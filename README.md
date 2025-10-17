@@ -58,3 +58,6 @@ cmake ..
 make
 ./app
 ```
+<img width="1036" height="510" alt="2025-10-17-04:21:21" src="https://github.com/user-attachments/assets/e7ff0062-a51d-4c50-bad3-0dca261ae219" />
+<img width="1254" height="636" alt="2025-10-17-04:21:56" src="https://github.com/user-attachments/assets/01dde054-ad61-4595-bcbc-999c5f7c81a5" />
+<img width="1313" height="653" alt="2025-10-17-04:22:18" src="https://github.com/user-attachments/assets/b3eef233-0990-4496-b05c-74a8e881e2b5" />
