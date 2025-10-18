@@ -19,6 +19,55 @@ llm = ChatDeepSeek(
     api_key=llm_api_key,  
 )
 
+def format_context(context_list):
+    """
+    Cleans and formats LangChain Document context output.
+
+    Args:
+        context_list (list): List of langchain Document objects or dicts.
+
+    Returns:
+        str: Formatted string like "doc1.pdf: pages 1, 2; doc2.pdf: pages 3"
+    """
+    try:
+        doc_pages = {}
+
+        for doc in context_list:
+            # Handle both Document objects and dicts
+            if hasattr(doc, "metadata"):
+                meta = doc.metadata
+            elif isinstance(doc, dict):
+                meta = doc.get("metadata", {})
+            else:
+                continue
+
+            source = meta.get("source")
+            page = meta.get("page")
+
+            if not source:
+                continue
+
+            doc_name = os.path.basename(source)
+            doc_pages.setdefault(doc_name, set())
+
+            if isinstance(page, int):
+                doc_pages[doc_name].add(page)
+
+        if not doc_pages:
+            return "No context found."
+
+        # Sort pages and build formatted string
+        formatted = "; ".join(
+            f"{doc}: pages {', '.join(map(str, sorted(pages)))}"
+            for doc, pages in doc_pages.items()
+        )
+
+        return formatted
+
+    except Exception as e:
+        return f"Error formatting context: {e}"
+    
+
 # --- RAG CHAIN ---
 def build_rag_chain():
     qdrant = restore_db()
@@ -78,4 +127,5 @@ def ask_rag(question: str, session_id: str = "default"):
     result = chain.invoke(
         {"input": question}, config={"configurable": {"session_id": session_id}}
     )
-    return result["answer"]
+    context = format_context(result["context"])
+    return result["answer"], context

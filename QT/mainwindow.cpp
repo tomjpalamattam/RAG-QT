@@ -101,12 +101,14 @@ void MainWindow::on_Query_clicked()
             } else {
                 QJsonObject obj = doc.object();
                 QString answer = obj.value("answer").toString();
+                QString context = obj.value("context").toString();
 
                 if (answer.isEmpty()) {
                     QString errorMsg = obj.value("error").toString("No answer received.");
                     QMessageBox::warning(this, "RAG Error", errorMsg);
                 } else {
                     ui->Answer->setText(answer);
+                    ui->Sources->setText(context);
                 }
             }
         }

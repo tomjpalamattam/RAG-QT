@@ -89,11 +89,27 @@
    <widget class="QTextEdit" name="Answer">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>80</x>
       <y>140</y>
-      <width>881</width>
+      <width>591</width>
       <height>421</height>
      </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="Sources">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>140</y>
+      <width>591</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
