@@ -7,6 +7,10 @@ from langchain.chains import create_history_aware_retriever, create_retrieval_ch
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
+from markdown_it import MarkdownIt
+from mdit_py_plugins.front_matter import front_matter_plugin
+from mdit_py_plugins.footnote import footnote_plugin
+
 
 # Load environment variables from .env
 load_dotenv()
@@ -18,6 +22,24 @@ llm = ChatDeepSeek(
     temperature=0,
     api_key=llm_api_key,  
 )
+
+def format_md():
+    md = (
+        MarkdownIt('commonmark', {'breaks':True,'html':True})
+        .use(front_matter_plugin)
+        .use(footnote_plugin)
+        .enable('table')
+    )
+    return md
+
+def get_session_history(session_id: str):
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+
+
+store = {}
+chain = None
 
 def format_context(context_list):
     """
@@ -105,13 +127,6 @@ def build_rag_chain():
     question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
-    store = {}
-
-    def get_session_history(session_id: str):
-        if session_id not in store:
-            store[session_id] = ChatMessageHistory()
-        return store[session_id]
-
     return RunnableWithMessageHistory(
         rag_chain,
         get_session_history,
@@ -123,9 +138,13 @@ def build_rag_chain():
 
 # create on-demand
 def ask_rag(question: str, session_id: str = "default"):
-    chain = build_rag_chain()
+    global chain
+    if not chain:
+        chain = build_rag_chain()
     result = chain.invoke(
         {"input": question}, config={"configurable": {"session_id": session_id}}
     )
     context = format_context(result["context"])
-    return result["answer"], context
+    md = format_md()
+    html_text = md.render(result["answer"])
+    return html_text, context
