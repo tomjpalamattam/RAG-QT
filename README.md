@@ -58,6 +58,18 @@ cmake ..
 make
 ./app
 ```
-<img width="1036" height="510" alt="2025-10-17-04:21:21" src="https://github.com/user-attachments/assets/e7ff0062-a51d-4c50-bad3-0dca261ae219" />
-<img width="1254" height="636" alt="2025-10-17-04:21:56" src="https://github.com/user-attachments/assets/01dde054-ad61-4595-bcbc-999c5f7c81a5" />
-<img width="1313" height="653" alt="2025-10-17-04:22:18" src="https://github.com/user-attachments/assets/b3eef233-0990-4496-b05c-74a8e881e2b5" />
+# Features
+
+Embed Your Loal documents
+
+<img width="1479" height="838" alt="2025-10-18-18:30:58" src="https://github.com/user-attachments/assets/66561c5d-f60a-4035-a9c3-ee459095c772" />
+
+Ask Questions
+
+<img width="1397" height="783" alt="2025-10-18-18:08:39" src="https://github.com/user-attachments/assets/bc02fcd0-2654-4a28-9249-7af5882b1843" />
+
+Context Aware
+
+<img width="1397" height="783" alt="2025-10-18-18:09:20" src="https://github.com/user-attachments/assets/a440fc23-ab9a-4b9d-957b-f16730a69773" />
+
+
