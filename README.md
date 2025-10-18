@@ -72,4 +72,7 @@ Context Aware
 
 <img width="1397" height="783" alt="2025-10-18-18:09:20" src="https://github.com/user-attachments/assets/a440fc23-ab9a-4b9d-957b-f16730a69773" />
 
+## Notes
+This application is based on langchain, qdrant, deepseek and huggingface.
+You should create a .env file in the rag_server/.env (you can see .env-example file)
 
