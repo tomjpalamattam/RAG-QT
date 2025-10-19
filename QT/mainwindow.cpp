@@ -78,6 +78,8 @@ void MainWindow::on_Query_clicked()
 
     QJsonObject json;
     json["question"] = question;
+    json["session_id"] = currentSessionId.isEmpty() ? "default" : currentSessionId;
+
 
     // disable button while waiting
     ui->Query->setEnabled(false);
@@ -114,5 +116,19 @@ void MainWindow::on_Query_clicked()
         }
         reply->deleteLater();
     });
+}
+
+
+void MainWindow::on_SessionID_clicked()
+{
+    QString sessionid = ui->SessionName->text().trimmed();
+    if (sessionid.isEmpty()) {
+        QMessageBox::warning(this, "Missing Session ID", "Please enter a session name.");
+        return;
+    }
+
+    currentSessionId = sessionid;
+    QMessageBox::information(this, "Session Set",
+                             "Session ID set to: " + currentSessionId);
 }
 

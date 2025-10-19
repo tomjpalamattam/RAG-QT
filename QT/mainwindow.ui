@@ -32,7 +32,7 @@
      <rect>
       <x>190</x>
       <y>40</y>
-      <width>1051</width>
+      <width>531</width>
       <height>25</height>
      </rect>
     </property>
@@ -90,9 +90,9 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>140</y>
-      <width>591</width>
-      <height>421</height>
+      <y>170</y>
+      <width>1171</width>
+      <height>301</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -102,14 +102,76 @@
    <widget class="QTextEdit" name="Sources">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>140</y>
-      <width>591</width>
-      <height>421</height>
+      <x>80</x>
+      <y>500</y>
+      <width>1171</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="readOnly">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>150</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Answer</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>480</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sources</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="SessionName">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>40</y>
+      <width>251</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SessionID">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>40</y>
+      <width>81</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SessionID</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>20</y>
+      <width>291</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Restore or Create a session for persitence</string>
     </property>
    </widget>
   </widget>

@@ -10,7 +10,9 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from markdown_it import MarkdownIt
 from mdit_py_plugins.front_matter import front_matter_plugin
 from mdit_py_plugins.footnote import footnote_plugin
+from langchain_community.chat_message_histories import SQLChatMessageHistory
 
+DB_PATH = "sqlite:///chat_history.db"
 
 # Load environment variables from .env
 load_dotenv()
@@ -32,11 +34,20 @@ def format_md():
     )
     return md
 
+""" 
 def get_session_history(session_id: str):
     if session_id not in store:
         store[session_id] = ChatMessageHistory()
     return store[session_id]
 
+ """
+
+def get_session_history(session_id: str):
+    """Return a persistent ChatMessageHistory for a session."""
+    return SQLChatMessageHistory(
+        session_id=session_id,
+        connection=DB_PATH
+    )
 
 store = {}
 chain = None

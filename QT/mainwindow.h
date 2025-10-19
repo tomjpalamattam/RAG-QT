@@ -20,9 +20,12 @@ private slots:
     void on_Query_clicked();
     void on_Embed_clicked();
 
+    void on_SessionID_clicked();
+
 private:
     Ui::MainWindow *ui;
 // manager added by Tom
     QNetworkAccessManager *manager;
+    QString currentSessionId;
 };
 #endif // MAINWINDOW_H
