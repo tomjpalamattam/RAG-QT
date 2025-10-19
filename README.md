@@ -60,17 +60,29 @@ make
 ```
 # Features
 
-Embed Your Loal documents
+Embed Your Local Documents
+Privately index PDFs, docs, and notes—no cloud required.
 
-<img width="1479" height="838" alt="2025-10-18-18:30:58" src="https://github.com/user-attachments/assets/66561c5d-f60a-4035-a9c3-ee459095c772" />
+<img width="1520" height="885" alt="2025-10-19-22:24:15" src="https://github.com/user-attachments/assets/b39408fa-bae1-4ce8-b8ea-18730239dc89" />
 
 Ask Questions
+Query in plain English and get precise, source-linked answers.
 
-<img width="1397" height="783" alt="2025-10-18-18:08:39" src="https://github.com/user-attachments/assets/bc02fcd0-2654-4a28-9249-7af5882b1843" />
+<img width="1362" height="788" alt="2025-10-19-22:18:51" src="https://github.com/user-attachments/assets/6ad41204-2c47-4027-89be-439d8f9741b2" />
 
-Context Aware
 
-<img width="1397" height="783" alt="2025-10-18-18:09:20" src="https://github.com/user-attachments/assets/a440fc23-ab9a-4b9d-957b-f16730a69773" />
+Context-Aware
+Understands prior turns to keep answers on topic.
+
+<img width="1362" height="788" alt="2025-10-19-22:20:10" src="https://github.com/user-attachments/assets/105378af-e537-43ee-8c23-02872e94405e" />
+
+
+SQL-Backed Chat History (Session IDs)
+Persist conversations per session for reliable, resumable threads.
+
+<img width="1427" height="829" alt="2025-10-19-22:24:48" src="https://github.com/user-attachments/assets/bd23aa25-2afa-49de-91d0-8bf07195bc6e" />
+<img width="1362" height="788" alt="2025-10-19-22:20:24" src="https://github.com/user-attachments/assets/12acd91f-6310-4412-b4b9-a2fe94bbfad2" />
+
 
 ## Notes
 This application is based on langchain, qdrant, deepseek and huggingface.
