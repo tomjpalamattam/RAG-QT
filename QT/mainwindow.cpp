@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-//added by Tom
+    //added by Tom
     manager = new QNetworkAccessManager(this);
 }
 
@@ -80,8 +80,6 @@ void MainWindow::on_Query_clicked()
     json["question"] = question;
     json["session_id"] = currentSessionId.isEmpty() ? "default" : currentSessionId;
 
-
-    // disable button while waiting
     ui->Query->setEnabled(false);
     ui->Query->setText("Asking...");
 
@@ -104,6 +102,7 @@ void MainWindow::on_Query_clicked()
                 QJsonObject obj = doc.object();
                 QString answer = obj.value("answer").toString();
                 QString context = obj.value("context").toString();
+                QString history = obj.value("history").toString();
 
                 if (answer.isEmpty()) {
                     QString errorMsg = obj.value("error").toString("No answer received.");
@@ -111,12 +110,14 @@ void MainWindow::on_Query_clicked()
                 } else {
                     ui->Answer->setText(answer);
                     ui->Sources->setText(context);
+                    ui->History->setPlainText(history);
                 }
             }
         }
         reply->deleteLater();
     });
 }
+
 
 
 void MainWindow::on_SessionID_clicked()

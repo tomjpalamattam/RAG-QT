@@ -49,6 +49,31 @@ def get_session_history(session_id: str):
         connection=DB_PATH
     )
 
+def get_full_history(session_id: str):
+    """Return the full chat history (as list of dicts) for a given session."""
+    history = get_session_history(session_id)
+    messages = history.messages  # returns a list of Message objects
+    result = []
+
+    for msg in messages:
+        # Message type can be HumanMessage, AIMessage, SystemMessage, etc.
+        role = "human" if msg.type == "human" else "ai"
+        result.append({"role": role, "content": msg.content})
+
+    return result
+
+def format_chat_history(history):
+    """Return simple readable string for UI."""
+    lines = []
+    for msg in history:
+        role = msg.get("role", "")
+        content = msg.get("content", "")
+        if role == "human":
+            lines.append(f"🧑 You: {content}")
+        elif role == "ai":
+            lines.append(f"🤖 AI: {content}")
+    return "\n".join(lines)
+
 store = {}
 chain = None
 
@@ -152,10 +177,16 @@ def ask_rag(question: str, session_id: str = "default"):
     global chain
     if not chain:
         chain = build_rag_chain()
+
     result = chain.invoke(
-        {"input": question}, config={"configurable": {"session_id": session_id}}
+        {"input": question},
+        config={"configurable": {"session_id": session_id}},
     )
-    context = format_context(result["context"])
+
+    context = format_context(result.get("context", []))
     md = format_md()
     html_text = md.render(result["answer"])
-    return html_text, context
+    full_history = get_full_history(session_id)
+    full_history_formatted = format_chat_history(full_history)
+
+    return html_text, context, full_history_formatted

@@ -38,10 +38,11 @@ async def query_docs(req: QueryRequest):
     Endpoint to handle RAG question-answering.
     """
     try:
-        answer, context = ask_rag(req.question, session_id=req.session_id)
+        answer, context, history = ask_rag(req.question, session_id=req.session_id)
         return {
             "answer": answer,
-            "context": context
+            "context": context,
+            "history": history
         }
     except Exception as e:
         return {"answer": "", "error": str(e)}
