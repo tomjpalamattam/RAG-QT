@@ -83,8 +83,7 @@ Persist conversations per session for reliable, resumable threads.
 <img width="1427" height="829" alt="2025-10-19-22:24:48" src="https://github.com/user-attachments/assets/bd23aa25-2afa-49de-91d0-8bf07195bc6e" />
 <img width="1362" height="788" alt="2025-10-19-22:20:24" src="https://github.com/user-attachments/assets/12acd91f-6310-4412-b4b9-a2fe94bbfad2" />
 
-Here’s a clean, professional **Docker section** you can copy directly into your `README.md`.
-It clearly explains how to build and run the app using Docker Compose, how to customize the mounted directory, and how to reference it inside the app 👇
+
 
 ---
 
