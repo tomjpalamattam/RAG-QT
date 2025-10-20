@@ -1,0 +1,9 @@
+services:
+  ragqt:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - "${HOME}/Documents/Docs:/app/user_docs"
