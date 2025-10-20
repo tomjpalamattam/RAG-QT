@@ -83,8 +83,98 @@ Persist conversations per session for reliable, resumable threads.
 <img width="1427" height="829" alt="2025-10-19-22:24:48" src="https://github.com/user-attachments/assets/bd23aa25-2afa-49de-91d0-8bf07195bc6e" />
 <img width="1362" height="788" alt="2025-10-19-22:20:24" src="https://github.com/user-attachments/assets/12acd91f-6310-4412-b4b9-a2fe94bbfad2" />
 
+Here’s a clean, professional **Docker section** you can copy directly into your `README.md`.
+It clearly explains how to build and run the app using Docker Compose, how to customize the mounted directory, and how to reference it inside the app 👇
+
+---
+
+## Docker Setup
+
+This project includes a preconfigured **Docker Compose** setup to run the backend server in an isolated environment.
+
+### Requirements
+
+* [Docker](https://docs.docker.com/get-docker/)
+* [Docker Compose](https://docs.docker.com/compose/)
+
+---
+
+### Build and Run
+
+To start the backend server, run the following command in the project root:
+
+```bash
+docker compose up --build
+```
+
+This will:
+
+* Build the Docker image using the included `Dockerfile`
+* Start the backend service defined in `compose.yaml`
+* Expose the API on port **8000**
+
+Once running, the API is available at:
+👉 [http://localhost:8000](http://localhost:8000)
+
+---
+
+### Mounting Your Local Documents
+
+By default, the container mounts the following local directory:
+
+```yaml
+services:
+  ragqt:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - "${HOME}/Documents/Docs:/app/user_docs"
+```
+
+This means:
+
+* Your **local folder** `${HOME}/Documents/Docs`
+  is accessible **inside the container** at `/app/user_docs`.
+
+You can change this to point to any folder on your system.
+For example:
+
+```yaml
+volumes:
+  - "/path/to/your/custom/folder:/app/user_docs"
+```
+
+---
+
+### Using the Mounted Folder in the App
+
+When embedding documents, always use `user_docs` in the directory path
+
+
+---
+
+### Stop the Container
+
+To stop the running container:
+
+```bash
+docker compose down
+```
+
+To rebuild from scratch (for example, after editing dependencies or Dockerfile):
+
+```bash
+docker compose build --no-cache
+docker compose up
+```
+
+---
+
 
 ## Notes
-This application is based on langchain, qdrant, deepseek and huggingface.
+This application is based on langchain, qdrant, deepseek, sqlite and huggingface.
 You should create a .env file in the rag_server/.env (you can see .env-example file)
 
